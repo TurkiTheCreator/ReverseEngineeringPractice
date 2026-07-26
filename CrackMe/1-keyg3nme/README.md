@@ -77,30 +77,44 @@ This immediately suggests that `main()` handles user interaction while `validate
 
 ---
 
-## Analyzing main()
+## Analyzing `main()`
 
-The decompiled `main()` function shows that the program:
+The `main()` function is responsible for handling user interaction and controlling the program's execution flow.
 
-1. Prompts the user for an activation key.
-2. Reads the integer entered by the user.
-3. Passes that value to `validate_key()`.
-4. Prints **Correct!** or **Wrong!** depending on the return value.
+After prompting the user for an activation key, the program stores the entered value and passes it to the `validate_key()` function. The function returns either a success or failure value, which determines whether the program prints the success message or rejects the key.
 
 ![main() Decompiled](screenshots/main.png)
 
 ---
 
-## Analyzing validate_key()
+## Analyzing `validate_key()`
 
-The validation routine contains the core logic:
+The `validate_key()` function contains the actual verification logic. It receives the user-supplied key as its only parameter and performs a simple mathematical check.
+
+The decompiled code reveals the following condition:
 
 ```c
 return input % 1223 == 0;
 ```
 
-This means the program checks whether the supplied number is evenly divisible by **1223**.
+The hexadecimal constant `0x4C7` is equal to **1223** in decimal.
 
-Any integer that is a multiple of **1223** satisfies the condition.
+In other words, the validation logic is:
+
+```text
+if (entered_key % 1223 == 0)
+    return true;
+else
+    return false;
+```
+
+Therefore, the smallest valid activation key is:
+
+```
+1223
+```
+
+Since the program only checks whether the number is divisible by **1223**, **any multiple of 1223** (such as `2446`, `3669`, etc.) will also be accepted.
 
 ![validate_key() Decompiled](screenshots/validate-key.png)
 
