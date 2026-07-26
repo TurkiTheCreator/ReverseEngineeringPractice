@@ -49,11 +49,10 @@ strings keyg3nme
 
 Interesting strings included:
 
-- "Activation key:"
-- "Correct!"
-- "Wrong!"
-- Function names
-
+Running the program prompts the user to enter an activation key. If the correct value is provided, the application displays
+- "Good job mate, now go keygen me".
+- Otherwise, it responds with "nope".
+During the initial inspection, there were no hardcoded keys or obvious string comparisons (such as strcmp) that revealed the correct input, indicating that the key is generated or validated through internal program logic rather than being stored directly in the binary.
 These strings indicate that the binary performs a simple validation routine.
 
 ![Strings Output](screenshots/strings.png)
